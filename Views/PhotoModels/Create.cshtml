@@ -1,0 +1,78 @@
+﻿@model MvcPhotoAlbumProject.ViewModels.PhotoViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-uppercase">new image</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Geolocation" class="control-label"></label>
+                        <input asp-for="Geolocation" class="form-control" />
+                        <span asp-validation-for="Geolocation" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Photo" class="control-label"></label>
+                        <div class="custom-file">
+                            <input asp-for="Photo" class="custom-file-input" />
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Tags" class="control-label"></label>
+                    <input asp-for="Tags" class="form-control" />
+                    <span asp-validation-for="Tags" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="CapturedDate" class="control-label"></label>
+                            <input asp-for="CapturedDate" class="form-control" />
+                            <span asp-validation-for="CapturedDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="CapturedBy" class="control-label"></label>
+                            <input asp-for="CapturedBy" class="form-control" />
+                            <span asp-validation-for="CapturedBy" class="text-danger"></span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+
+                    <div>
+                        <input type="submit" value="Create" class="btn btn-sm btn-primary rounded-0" />
+                        <a asp-action="Index" class="btn btn-sm btn-primary rounded-0">Back to List</a>
+                    </div>
+</form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

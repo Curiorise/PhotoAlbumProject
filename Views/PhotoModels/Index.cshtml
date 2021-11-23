@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MvcPhotoAlbumProject.Models.PhotoModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h3 class="text-center text-uppercase">Images</h3>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary rounded-0"><i class="fa fa-plus-circle"></i> Add New</a>
+    </p>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Geolocation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tags)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CapturedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CapturedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photo)
+                </th>
+                <th>Action(s)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    <a asp-action="Metadata" asp-route-id="@item.Id">
+                        <img src="@FileLocation.RetriveFileFromFolder@item.Photo" class="img-thumbnail" height="100" width="100" asp-append-version="true" />
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Geolocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tags)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CapturedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CapturedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Photo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-info rounded-0"><i class="fa fa-pencil-alt"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger rounded-0"><i class="fa fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>

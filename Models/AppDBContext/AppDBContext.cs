@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace MvcPhotoAlbumProject.Models.AppDBContext
 {
-    public class AppDBContext : IdentityDbContext
+    public class AppDBContext : IdentityDbContext 
     {
-        private readonly DbContextOptions _options;
+        private readonly DbContextOptions<AppDBContext> _options;
 
-        public AppDBContext(DbContextOptions options) : base(options)
+        public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {
             _options = options;
         }
+
+        public DbSet<PhotoModel> Photos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

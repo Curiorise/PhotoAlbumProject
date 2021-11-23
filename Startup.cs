@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvcPhotoAlbumProject.Models.AppDBContext;
 
+
 namespace MvcPhotoAlbumProject
 {
     public class Startup
@@ -32,6 +33,7 @@ namespace MvcPhotoAlbumProject
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDBContext>();
 
             services.AddControllersWithViews();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
